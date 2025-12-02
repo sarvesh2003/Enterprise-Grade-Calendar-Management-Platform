@@ -69,7 +69,7 @@ Due to strict university policies regarding the publication of course solutions,
 However, I am happy to grant **Read-Only access** to recruiters, hiring managers, and engineering leads for code review purposes.
 
 ### How to Request Access:
-1.  Please contact me via **[LinkedIn](https://www.linkedin.com/in/sarvesh-e/)** or send an email to elanchezhian.sa@northeastern.edu
+1.  Please send an email to elanchezhian.sa@northeastern.edu
 2.  **Important:** To ensure verified access, if requesting via email, please use your official company email address. Requests from personal email domains (e.g., Gmail, Yahoo) cannot be processed.
 3.  Include a note in your connection request or send a direct message with the subject: "GitHub Access Request: Calendar Project".
 4.  Once received, I will add your GitHub username as a collaborator to the private repository.
