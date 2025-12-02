@@ -58,6 +58,8 @@ The core strength of this project lies in its strict adherence to **SOLID princi
 ### Swing UI View
 <img width="882" height="626" alt="image" src="https://github.com/user-attachments/assets/df585367-ed60-45bf-9a1d-20ffdc48f3ff" />
 <img width="886" height="628" alt="image" src="https://github.com/user-attachments/assets/e0d27b4d-000d-4b0c-a097-65c3c813086f" />
+
+
 ---
 
 ## Access to Source Code
@@ -67,8 +69,9 @@ Due to strict university policies regarding the publication of course solutions,
 However, I am happy to grant **Read-Only access** to recruiters, hiring managers, and engineering leads for code review purposes.
 
 ### How to Request Access:
-1.  Please contact me via **[LinkedIn](https://www.linkedin.com/in/sarvesh-e/)**.
-2.  Include a note in your connection request or send a direct message with the subject: "GitHub Access Request: Calendar Project".
-3.  Once received, I will add your GitHub username as a collaborator to the private repository.
+1.  Please contact me via **[LinkedIn](https://www.linkedin.com/in/sarvesh-e/)** or send an email to elanchezhian.sa@northeastern.edu
+2.  **Important:** To ensure verified access, if requesting via email, please use your official company email address. Requests from personal email domains (e.g., Gmail, Yahoo) cannot be processed.
+3.  Include a note in your connection request or send a direct message with the subject: "GitHub Access Request: Calendar Project".
+4.  Once received, I will add your GitHub username as a collaborator to the private repository.
 
 ---
