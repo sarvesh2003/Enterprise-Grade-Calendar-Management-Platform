@@ -49,7 +49,7 @@ The core strength of this project lies in its strict adherence to **SOLID princi
 
 * **Testing Framework:** Comprehensive **JUnit** test suite.
 * **Coverage:** Extensive unit testing for edge cases with 95% instruction coverage and 90% branch coverage.
-* **Modularity:** The codebase is designed for testability, allowing individual components (like the XML parser or Conflict Detector) to be tested in isolation.
+* **Modularity:** The codebase is designed for testability, allowing individual components to be tested in isolation.
 
 ---
 
