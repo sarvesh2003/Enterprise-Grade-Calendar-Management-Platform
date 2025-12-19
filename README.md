@@ -1,4 +1,4 @@
-# Enterprise-Grade Calendar Management Platform
+# Enterprise Calendar Management Platform
 
 > **⚠️ Academic Integrity Note:** This project was developed as part of the **CS 5010** curriculum at Northeastern University. To comply with university academic integrity policies, the source code is hosted in a private repository.
 
