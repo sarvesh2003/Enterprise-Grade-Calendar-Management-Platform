@@ -1,57 +1,90 @@
 # Enterprise-Grade Calendar Management Platform
 
-> **⚠️ Academic Integrity Note:** This project was developed as part of the **CS 5010** curriculum. To comply with university academic integrity policies, the source code is hosted in a private repository.
+> **⚠️ Academic Integrity Note:** This project was developed as part of the **CS 5010** curriculum at Northeastern University. To comply with university academic integrity policies, the source code is hosted in a private repository.
+
+A multi-calendar management system built with **Java**, featuring timezone-aware scheduling, recurring events, and dual interface support (Swing GUI + CLI).
 
 ## Project Overview
 
-This application is a robust, multi-tenant calendar management system capable of handling complex scheduling requirements. Unlike simple calendar apps, this system was architected with a focus on **extensibility** and **clean object-oriented design**.
-
-It supports full conflict detection, recurring events, and time-zone management, accessible via both a rich Swing GUI and a dual-mode CLI (Interactive & Headless) for automation.
+This calendar platform handles complex scheduling scenarios - multiple calendars with independent timezones, recurring event series with flexible modification scopes, and cross-calendar event migration with automatic datetime conversion.
 
 ---
 
 ## Architecture & Design
 
-The core strength of this project lies in its strict adherence to **SOLID principles** and **Clean Architecture**.
+The system follows a strict **MVC (Model-View-Controller)** architecture with clear separation of concerns.
 
-### Key Design Patterns Implemented:
-* **Model-View-Controller (MVC):** Strict separation of concerns ensuring the business logic (scheduling rules) is completely isolated from the UI implementation.
-* **Command Pattern:** Used to drive controller execution, allowing for extensible user actions without modifying core logic.
-* **Builder Pattern:** Implemented for Event and EventSeries creation, ensuring object immutability and preventing inconsistent states during complex object construction.
-* **Strategy & Features Interface:** Decoupled the View and Controller layers, allowing the application to switch seamlessly between a Swing GUI and a Command Line Interface without code duplication.
+### Design Patterns Implemented
 
-### System Architecture
+| Pattern | Implementation | Purpose |
+|---------|----------------|---------|
+| **MVC** | Separate model/view/controller packages | Decouple business logic from presentation |
+| **Command** | `CalendarCommand` interface + 10 concrete commands | Encapsulate user operations as executable objects |
+| **Builder** | `Event.EventBuilder`, `EventSeries.SeriesBuilder` | Construct immutable objects with optional parameters |
+| **Factory** | `IeventFactory`, `EventFactory` | Abstract object creation for extensibility |
+| **Strategy** | `Features` interface between View and Controller | Enable swappable UI implementations |
 
-*(Note: The system utilizes a modular design where the View communicates user actions to the Controller via a `Features` interface, ensuring high cohesion and low coupling.)*
+### Key Architectural Decisions
+
+- **Features Interface:** Views communicate user actions to Controllers through this contract, enabling the same controller logic to work with different UI implementations (Swing, CLI) without modification.
+- **Immutable Events:** Events are final classes with private constructors, built only via Builder pattern - ensures data integrity and thread-safe reads.
+- **Command Dispatcher:** CLI input is parsed via regex patterns mapped to `CalendarCommand` implementations through Java functional interfaces.
 
 ---
 
 ## Key Features
 
-### Advanced Scheduling
-* **Multi-Calendar Management:** Support for creating and managing multiple distinct calendars within a single application instance.
-* **Recurring Events:** Logic to handle daily, weekly, and monthly repetitions.
-* **Conflict Detection:** Algorithms to detect and prevent overlapping events across users.
-* **Time-Zone Awareness:** Events are normalized to handle global scheduling.
+### Multi-Calendar Management
+- Create unlimited calendars with independent timezone configurations
+- Switch between active calendars seamlessly
+- Copy events across calendars with automatic timezone conversion (preserves duration, adjusts wall-clock time)
 
-### Dual Interface (UI & CLI)
-* **Swing GUI:** A user-friendly desktop interface for visual calendar management.
-* **Interactive CLI:** A text-based menu for quick operations.
-* **Headless CLI:** Scriptable support for batch processing commands.
+### Recurring Events Engine
+- **Pattern Encoding:** 7-day system (M=Monday, T=Tuesday, W=Wednesday, R=Thursday, F=Friday, S=Saturday, U=Sunday)
+- **Termination Options:** Count-based ("repeat 10 times") or date-based ("repeat until Dec 31")
+- **Three Modification Scopes:**
+  - `ONLY_CURRENT_EVENT` -> Edit single instance only
+  - `CURRENT_EVENT_AND_NEXT_IN_SERIES` -> Edit this and all future occurrences
+  - `ALL_EVENTS` -> Edit entire series
+- **Automatic Series Dissociation:** When temporal properties (start/end time) of a single instance are modified, it detaches from the series to preserve original recurrence pattern
 
-### Data & Interoperability
-* **Export/Import:** Full support for **CSV** and **iCal** standards.
-* **Platform Independence:** Custom file I/O implementation ensuring functionality across different operating systems.
+### Timezone Intelligence
+- Each calendar maintains independent timezone configuration
+- Cross-calendar event migration uses `ZonedDateTime.withZoneSameInstant()` for accurate conversion
+- Properly handles timezone offset differences during copy operations
+
+### Dual Interface Support
+
+**Swing GUI:**
+- Month grid view with clickable event cards
+- Day timeline view with overlap-aware column layout algorithm
+- Visual event creation and editing dialogs
+- Real-time view refresh on data changes
+
+**Command Line Interface:**
+- **Interactive Mode:** Manual command entry with prompt
+- **Headless Mode:** Batch processing from command files for automation/scripting
+
+### Export Capabilities
+- **iCalendar (.ics):** Timezone-aware export compatible with Google Calendar, Outlook, Apple Calendar
+- **CSV:** Spreadsheet-friendly format with formatted date/time columns
 
 ---
 
-## Quality Assurance
+## Testing
 
-* **Testing Framework:** Comprehensive **JUnit** test suite.
-* **Coverage:** Extensive unit testing for edge cases with 95% instruction coverage and 90% branch coverage.
-* **Modularity:** The codebase is designed for testability, allowing individual components to be tested in isolation.
+| Metric | Coverage |
+|--------|----------|
+| Instruction Coverage | 95% |
+| Branch Coverage | 90% |
+
+**Testing Approach:**
+- **Unit Tests:** Isolated component testing with dependency injection for mocking
+- **Integration Tests:** End-to-end command parsing through execution validation
+- **Edge Cases:** Series modification conflicts, timezone boundary conditions, duplicate event detection
 
 ---
+
 
 ## Screenshots
 
@@ -61,6 +94,16 @@ The core strength of this project lies in its strict adherence to **SOLID princi
 
 
 ---
+
+## What I Learned
+
+- Applying **SOLID principles** and **design patterns** in a non-trivial codebase
+- Trade-offs between **immutability** and ease of modification
+- Designing **extensible command processing** systems with regex + functional interfaces
+- **Timezone complexity** in scheduling applications (wall-clock vs instant, DST handling)
+- Building **testable architecture** through interface segregation and dependency injection
+- Creating **UI-agnostic controllers** via abstraction layers
+
 
 ## Access to Source Code
 
